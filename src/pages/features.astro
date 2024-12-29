@@ -1,0 +1,233 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import { Image } from "astro:assets";
+import featuresOne from "../assets/features-qr.png";
+import featuresTwo from "../assets/features-wayfinder.png";
+import featuresThree from "../assets/features-museum.png";
+import featuresFour from "../assets/features-chart.png";
+// import fullWidthImage from "../assets/features-dashboard.png";
+
+const features = [
+  {
+    title: "QR Code Access",
+    description: "Visitors simply scan a QR code to instantly access your digital guide. No app downloads required, making it seamless for guests to start exploring your space.",
+    image: featuresOne,
+    benefits: [
+      "Instant access - no downloads needed",
+      "Custom branded QR codes",
+      "Works on any smartphone"
+    ]
+  },
+  {
+    title: "Interactive Mapping",
+    description: "Create intuitive wayfinding experiences with interactive maps. Help visitors navigate your space confidently while discovering points of interest along the way.",
+    image: featuresTwo,
+    benefits: [
+      "Custom floor plans and maps",
+      "Point-to-point navigation",
+      "Location-aware content"
+    ]
+  },
+  {
+    title: "Content Management",
+    description: "Easily update your guides in real-time through our intuitive dashboard. Add new exhibits, update information, or modify routes instantly without any technical knowledge.",
+    image: featuresThree,
+    benefits: [
+      "Real-time content updates",
+      "Rich media support",
+      "Multi-language capabilities"
+    ]
+  },
+  {
+    title: "Visitor Analytics",
+    description: "Gain valuable insights into how visitors interact with your space. Track popular routes, dwell times, and engagement metrics to optimize the visitor experience.",
+    image: featuresFour,
+    benefits: [
+      "Detailed engagement metrics",
+      "Visitor flow analysis",
+      "Custom reporting tools"
+    ]
+  }
+];
+
+// Add animation keyframes and utility classes
+const glowAnimation = {
+  name: 'glow',
+  keyframes: `
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+  `
+};
+
+const floatAnimation = {
+  name: 'float',
+  keyframes: `
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  `
+};
+---
+
+<Layout title="Features">
+  <div class="relative overflow-hidden">
+    <div class="gradient-mesh"></div>
+    
+    <Container>
+      <Sectionhead>
+        <Fragment slot="title">Features</Fragment>
+        <Fragment slot="desc">
+          Transform your physical space into an interactive experience
+        </Fragment>
+      </Sectionhead>
+
+      <div class="mt-16 space-y-24">
+        {
+          features.slice(0, 2).map((feature, index) => (
+            <div class={`group grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+              <div class="relative">
+                <div class="gradient-hover"></div>
+                <div class="relative glass-card p-2">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    class="w-full rounded-xl shadow-lg hover-scale"
+                    width={500}
+                    height={500}
+                  />
+                </div>
+                <div class="gradient-glow"></div>
+              </div>
+              <div class="relative">
+                <div class="glass-card p-8">
+                  <h3 class="text-3xl font-bold mb-4 gradient-text">
+                    {feature.title}
+                  </h3>
+                  <p class="text-lg text-slate-600 mb-8">{feature.description}</p>
+                  <ul class="space-y-4">
+                    {feature.benefits.map(benefit => (
+                      <li class="flex items-center gap-3 group/item">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                        <span class="text-slate-700 group-hover/item:text-slate-900 transition-colors duration-300">
+                          {benefit}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+
+        <!-- Full width section with enhanced styling -->
+        <div class="relative -mx-8 md:-mx-16 lg:-mx-32">
+          <div class="bg-gradient-to-b from-gray-50 to-white py-16">
+            <Container>
+              <div class="text-center max-w-3xl mx-auto mb-12 relative">
+                <span class="absolute -inset-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-xl"></span>
+                <h2 class="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                  Everything you need to host
+                </h2>
+                <p class="text-lg text-slate-600 relative">
+                  Our comprehensive dashboard gives you all the tools needed to manage your digital guides, 
+                  track analytics, and create engaging experiences.
+                </p>
+              </div>
+            </Container>
+          </div>
+        </div>
+
+        {
+          features.slice(2).map((feature, index) => (
+            <div class={`group grid md:grid-cols-2 gap-12 items-center ${(index + 2) % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+              <div class="relative">
+                <div class="gradient-hover"></div>
+                <div class="relative glass-card p-2">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    class="w-full rounded-xl shadow-lg hover-scale"
+                    width={500}
+                    height={500}
+                  />
+                </div>
+                <div class="gradient-glow"></div>
+              </div>
+              <div class="relative">
+                <div class="glass-card p-8">
+                  <h3 class="text-3xl font-bold mb-4 gradient-text">
+                    {feature.title}
+                  </h3>
+                  <p class="text-lg text-slate-600 mb-8">{feature.description}</p>
+                  <ul class="space-y-4">
+                    {feature.benefits.map(benefit => (
+                      <li class="flex items-center gap-3 group/item">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                        <span class="text-slate-700 group-hover/item:text-slate-900 transition-colors duration-300">
+                          {benefit}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </div>
+</Layout>
+
+<style>
+  @keyframes glow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .clip-path-polygon {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%);
+  }
+
+  .clip-path-circle {
+    clip-path: circle(70% at 30% 50%);
+  }
+
+  /* Smooth scrolling for the whole page */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #2563eb, #7c3aed);
+  }
+</style> 

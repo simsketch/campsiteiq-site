@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+import dashboardImage from "assets/dashboard.png";
+
+const features = [
+  {
+    title: "Personalized Recommendations",
+    description: "Curate a list of local attractions, restaurants, and hidden gems that align with your guests' preferences and interests.",
+    icon: "ph:star-fill",
+  },
+  {
+    title: "Interactive Digital Guidebook",
+    description: "Replace traditional printed guidebooks with an interactive digital platform that guests can access on their smartphones or tablets.",
+    icon: "ph:device-mobile-camera-fill",
+  },
+  {
+    title: "Transform Stays into Stories",
+    description: "Create memorable experiences that guests will love to share, boosting positive word-of-mouth for your property.",
+    icon: "ph:book-open-text-fill",
+  },
+  {
+    title: "Time-Saving Solution",
+    description: "Let guests find answers independently while you focus on other aspects of hosting. Reduce repetitive questions dramatically.",
+    icon: "ph:clock-countdown-fill",
+  },
+  {
+    title: "Offline Accessibility",
+    description: "Guests can download the guidebook before their trip, enabling access to maps and recommendations even without internet.",
+    icon: "ph:cloud-arrow-down-fill",
+  },
+  {
+    title: "Seamless Integration",
+    description: "Quickly input information, upload images, and customize the guidebook to reflect your unique hosting style.",
+    icon: "ph:puzzle-piece-fill",
+  }
+];
+---
+
+<div class="relative py-20">
+  <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-gradient-animation mb-4">
+        Everything you need to host
+      </h2>
+      <p class="text-lg text-slate-600 mb-16 shimmer">
+        Create personalized recommendations for your guests, ensuring a unique and memorable stay
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+      {
+        features.map((feature) => (
+          <div class="relative group">
+            <div class="gradient-hover"></div>
+            <div class="glass-card p-8 text-center h-full">
+              <div class="relative w-16 h-16 rounded-full gradient-bg mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute inset-0 rounded-full bg-blue-600/20 animate-ping" />
+                <div class="relative flex items-center justify-center w-full h-full">
+                  <Icon class="w-8 h-8 text-white" name={feature.icon} />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold gradient-text mb-4">{feature.title}</h3>
+              <p class="text-slate-600 leading-relaxed">{feature.description}</p>
+            </div>
+            <div class="gradient-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-20 relative">
+      <div class="glass-card p-8 overflow-hidden">
+        <div class="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+          <div class="text-center lg:text-left">
+            <h3 class="text-3xl font-bold gradient-text mb-4">
+              Powerful Dashboard
+            </h3>
+            <p class="text-lg text-slate-600 mb-8">
+              Manage all your properties, update content, and track analytics from one central location. Keep your guides up-to-date with real-time changes.
+            </p>
+            <a href="/features" class="button-gradient inline-flex items-center">
+              Learn More
+              <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+          <div class="relative group">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Image
+            src={dashboardImage}
+              alt="TouchGuides Dashboard"
+              width={600}
+              height={400}
+              class="rounded-xl shadow-2xl hover-scale"
+            />
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl" />
+          </div>
+        </div>
+
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl" />
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .animate-ping {
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+</style>

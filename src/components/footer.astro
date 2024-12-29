@@ -1,19 +1,58 @@
-<footer class="my-20">
-  <p class="text-center text-sm text-slate-500">
-    Copyright © {new Date().getFullYear()} TouchGuides. All rights reserved.
-  </p>
-  <!--
-    Can we ask you a favor 🙏
-    Please keep this backlink on your website if possible.
-    or Purchase a commercial license from https://web3templates.com
-  -->
-  <p class="text-center text-xs text-slate-500 mt-1">
-    Made by <a
-      href="https://web3templates.com"
-      target="_blank"
-      rel="noopener"
-      class="hover:underline">
-      Yoyo Code
-    </a>
-  </p>
+---
+import Container from "@components/container.astro";
+
+const footerLinks = [
+  {
+    title: "Product",
+    items: [
+      { title: "Features", path: "/features" },
+      { title: "Pricing", path: "/pricing" },
+      { title: "About", path: "/about" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { title: "Blog", path: "/blog" },
+      { title: "Contact", path: "/contact" },
+      { title: "Careers", path: "/careers" },
+    ],
+  },
+  {
+    title: "Company",
+    items: [
+      { title: "Privacy", path: "/privacy" },
+      { title: "Terms", path: "/terms" },
+    ],
+  },
+];
+---
+
+<footer class="relative mt-16 border-t border-gray-200 dark:border-gray-800">
+  <div class="gradient-mesh opacity-30"></div>
+  <Container>
+    <div class="grid grid-cols-1 gap-10 py-16 sm:grid-cols-2 md:grid-cols-4">
+      {footerLinks.map(category => (
+        <div>
+          <h3 class="gradient-text font-medium">{category.title}</h3>
+          <ul class="mt-4 space-y-2">
+            {category.items.map(item => (
+              <li>
+                <a href={item.path} class="hover-scale inline-block text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </Container>
+  <div class="py-6 border-t border-gray-200 dark:border-gray-800">
+    <Container>
+      <p class="text-center text-sm text-slate-600 dark:text-slate-400">
+        Copyright © {new Date().getFullYear()} TouchGuides. All rights reserved.
+      </p>
+    </Container>
+  </div>
 </footer>

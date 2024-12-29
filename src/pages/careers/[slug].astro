@@ -1,0 +1,66 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Contactform from "@components/contactform.astro";
+
+export async function getStaticPaths() {
+  const jobs = await getCollection("jobs");
+  return jobs.map((job) => ({
+    params: { slug: job.slug },
+    props: { job },
+  }));
+}
+
+const { job } = Astro.props;
+const { Content } = await job.render();
+---
+
+<Layout title={`${job.data.title} - Careers`}>
+  <Container>
+    <div class="max-w-3xl mx-auto py-12">
+      <a href="/careers" class="text-blue-600 hover:text-blue-800 mb-8 inline-block">
+        ← Back to Careers
+      </a>
+
+      <h1 class="text-4xl font-bold mb-4">
+        {job.data.title}
+      </h1>
+      
+      <div class="flex gap-4 text-slate-600 mb-8">
+        <span>{job.data.department}</span>
+        <span>·</span>
+        <span>{job.data.location}</span>
+        <span>·</span>
+        <span>{job.data.type}</span>
+      </div>
+
+      <div class="prose max-w-none mb-12">
+        <h2>About the Role</h2>
+        <p>{job.data.summary}</p>
+
+        <h2>Key Responsibilities</h2>
+        <ul>
+          {job.data.responsibilities.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+
+        <h2>Requirements</h2>
+        <ul>
+          {job.data.requirements.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bg-slate-50 p-8 rounded-lg">
+        <h2 class="text-2xl font-bold mb-6">Apply for this Position</h2>
+        <Contactform 
+          formId="job-application"
+          subject={`Job Application: ${job.data.title}`}
+        />
+      </div>
+    </div>
+  </Container>
+</Layout> 

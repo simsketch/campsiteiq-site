@@ -1,0 +1,124 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero.png"; // Use existing hero image
+import cultureImage from "../assets/hero-alt.png"; // Use existing alternate hero image
+
+const jobs = await getCollection("jobs");
+const featuredJobs = jobs.filter(job => job.data.featured);
+const allJobs = jobs.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<Layout title="Careers">
+  <Container>
+    <div class="relative overflow-hidden">
+      <!-- Hero Section -->
+      <div class="grid lg:grid-cols-2 gap-8 items-center pt-16 pb-8">
+        <div>
+          <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+            Join Our Mission
+          </h1>
+          <p class="text-lg mt-4 text-slate-600 max-w-xl">
+            Help us transform the way people experience and interact with physical spaces.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="#opportunities" 
+              class="bg-black text-white hover:bg-gray-800 px-6 py-3 rounded-md transition-all duration-150 ease-in-out">
+              Join the team
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-tr from-purple-500 to-blue-500 opacity-20 clip-path-polygon"></div>
+          <Image
+            src={heroImage}
+            alt="Team collaboration"
+            class="w-full rounded-md shadow-lg"
+            width={500}
+            height={500}
+          />
+        </div>
+      </div>
+
+      <!-- Culture Section -->
+      <div class="grid lg:grid-cols-2 gap-8 items-center py-16">
+        <div class="order-2 lg:order-1 relative">
+          <div class="absolute inset-0 bg-gradient-to-bl from-blue-500 to-purple-500 opacity-20 clip-path-circle"></div>
+          <Image
+            src={cultureImage}
+            alt="Company culture"
+            class="w-full rounded-md shadow-lg"
+            width={500}
+            height={500}
+          />
+        </div>
+        <div class="order-1 lg:order-2">
+          <h2 class="text-3xl font-bold mb-4">Our Culture</h2>
+          <p class="text-lg text-slate-600 mb-4">
+            We're building a team of passionate individuals who are excited about transforming how people interact with physical spaces.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3">
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Remote-first culture</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Flexible working hours</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Continuous learning & development</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Job Opportunities Section -->
+      <div id="opportunities" class="py-16">
+        <h2 class="text-3xl font-bold mb-8">Open Positions</h2>
+        <div class="grid gap-6">
+          {allJobs.map((job) => (
+            <a href={`/careers/${job.slug}`} 
+              class="group p-6 border border-slate-200 rounded-lg hover:border-slate-300 transition-all duration-200">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-semibold group-hover:text-blue-600">
+                    {job.data.title}
+                  </h3>
+                  <p class="text-slate-600 mt-1">
+                    {job.data.department} · {job.data.location} · {job.data.type}
+                  </p>
+                </div>
+                <span class="text-blue-600 group-hover:translate-x-2 transition-transform duration-200">
+                  →
+                </span>
+              </div>
+              <p class="mt-4 text-slate-600">
+                {job.data.summary}
+              </p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>
+
+<style>
+  .clip-path-polygon {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%);
+  }
+  .clip-path-circle {
+    clip-path: circle(70% at 30% 50%);
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import { formatDate } from "@utils/all";
+---
+
+<div class="grid gap-10 mt-16 lg:grid-cols-2">
+  {
+    posts.map((post, index) => (
+      <article class="relative group">
+        <div class="gradient-hover"></div>
+        <div class="glass-card overflow-hidden">
+          <div class="relative">
+            <Image
+              src={post.data.image}
+              alt={post.data.title}
+              width={400}
+              height={250}
+              class="hover-scale w-full h-64 object-cover"
+            />
+            <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent">
+              <span class="text-sm text-white">{formatDate(post.data.publishDate)}</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h2 class="text-2xl font-bold mb-3 gradient-text">
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </h2>
+            <p class="text-slate-600">{post.data.excerpt}</p>
+            <div class="mt-4">
+              <a href={`/blog/${post.slug}`} class="button-gradient inline-flex items-center">
+                Read More
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="gradient-glow"></div>
+      </article>
+    ))
+  }
+</div> 

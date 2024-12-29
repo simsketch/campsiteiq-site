@@ -2,18 +2,19 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
-import PricingCard from "@components/pricing.astro";
+import Pricing from "@components/pricing.astro";
+import { Icon } from "astro-icon";
 
 const pricing = [
   {
     name: "Personal",
-    price: "Free Trial",
+    price: "Free",
     popular: false,
     features: [
-      "Up to 1 property",
-      "99% Uptime SLA",
+      "Lifetime free",
+      "Up to 3 users",
       "Unlimited Pages",
-      "TouchGuides Subdomain",
+      "Astro Sub pages",
       "Basic Integrations",
       "Community Support",
     ],
@@ -26,14 +27,14 @@ const pricing = [
     name: "Startup (most popular)",
     price: {
       monthly: "$19",
-      annual: "$16",
-      discount: "10%",
-      original: "$24",
+      annual: "$15",
+      discount: "20%",
+      original: "$25",
     },
     popular: true,
     features: [
       "Up to 2 properties",
-      "99% Uptime SLA",
+      "$5 each additional property",
       "Unlimited Pages",
       "TouchGuides Subdomain",
       "Advanced Integrations",
@@ -41,12 +42,12 @@ const pricing = [
     ],
     button: {
       text: "Get Started",
-      link: "#",
+      link: "https://portal.touchguides.com",
     },
   },
   {
     name: "Enterprise",
-    price: "Custom",
+    price: "Custom Pricing",
     popular: false,
     features: [
       "Unlimited properties",
@@ -66,15 +67,61 @@ const pricing = [
 
 <Layout title="Pricing">
   <Container>
-    <Sectionhead>
-      <Fragment slot="title">Pricing</Fragment>
-      <Fragment slot="desc">
-        Simple & Predictable pricing. No Surprises.
-      </Fragment>
-    </Sectionhead>
+    <div class="relative">
+      <div class="gradient-mesh"></div>
+      <Sectionhead>
+        <Fragment slot="title" class="text-gradient-animation">
+          Simple & Predictable Pricing
+        </Fragment>
+        <Fragment slot="desc">
+          Choose the perfect plan for your business
+        </Fragment>
+      </Sectionhead>
 
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
-      {pricing.map((item) => <PricingCard plan={item} />)}
+      <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
+        {
+          pricing.map((item) => (
+            <div class="relative group">
+              <div class="gradient-hover"></div>
+              <div class="glass-card p-8">
+                <h3 class="text-2xl font-bold gradient-text mb-4">{item.name}</h3>
+                <p class="text-3xl font-bold mb-6">
+                  {typeof item.price === "object" ? `${item.price.monthly}/mo` : item.price}
+                </p>
+                <ul class="space-y-4">
+                  {item.features.map((feature) => (
+                    <li class="flex items-center gap-2">
+                      <Icon class="w-5 h-5 text-blue-500" name="ph:check-circle-fill" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div class="mt-8">
+                  <a href={item.button.link} class={`button-gradient w-full text-center ${item.popular ? 'gradient-bg' : ''}`}>
+                    {item.button.text}
+                  </a>
+                </div>
+              </div>
+              <div class="gradient-glow"></div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </Container>
 </Layout>
+
+<script>
+  const toggle = document.getElementById('pricing-toggle');
+  const priceElements = document.querySelectorAll('[data-price-monthly]');
+
+  toggle?.addEventListener('change', () => {
+    priceElements.forEach(element => {
+      const monthly = element.getAttribute('data-price-monthly');
+      const annual = element.getAttribute('data-price-annual');
+      if (monthly && annual) {
+        element.textContent = toggle.checked ? annual : monthly;
+      }
+    });
+  });
+</script>

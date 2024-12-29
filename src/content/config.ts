@@ -31,9 +31,20 @@ const teamCollection = defineCollection({
   }),
 });
 
-// 3. Export a single `collections` object to register your collection(s)
-//    This key should match your collection directory name in "src/content"
 export const collections = {
   'blog': blogCollection,
   'team': teamCollection,
+  jobs: defineCollection({
+    schema: z.object({
+      title: z.string(),
+      department: z.string(),
+      location: z.string(),
+      type: z.enum(["Full-time", "Part-time", "Contract"]),
+      published: z.date(),
+      featured: z.boolean().optional().default(false),
+      summary: z.string(),
+      requirements: z.array(z.string()),
+      responsibilities: z.array(z.string()),
+    }),
+  }),
 };
