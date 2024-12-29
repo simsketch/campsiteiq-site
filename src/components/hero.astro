@@ -1,6 +1,7 @@
 ---
 import { Picture } from "astro:assets";
-import iphone from "assets/hero-image.png";
+import iphone from "assets/hero-no-shadow.png";
+import shadow from "assets/shadow.png";
 import Link from "@components/ui/link.astro";
 import ParticleButton from "@components/ui/ParticleButton.astro";
 import { Icon } from "astro-icon";
@@ -12,7 +13,7 @@ import { Icon } from "astro-icon";
   <div class="py-6 md:order-1 md:block">
     <div class="relative group">
       <!-- <div class="gradient-hover"></div> -->
-      <div>
+      <div class="hero-image floating-animation">
         <Picture 
           src={iphone} 
           alt="TouchGuides app on an iPhone" 
@@ -20,6 +21,14 @@ import { Icon } from "astro-icon";
           height={400}
         />
       </div>
+
+      <Picture 
+        src={shadow} 
+        alt="TouchGuides app on an iPhone" 
+        width={600} 
+        height={400}
+        class="absolute top-60 left-0 w-full h-full opacity-20"
+      />
       <!-- <div class="gradient-glow"></div> -->
     </div>
   </div>
@@ -48,3 +57,21 @@ import { Icon } from "astro-icon";
     </div>
   </div>
 </main>
+
+<style>
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+</style>
