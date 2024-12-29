@@ -66,19 +66,15 @@ const pricing = [
 ---
 
 <Layout title="Pricing">
-  <Container>
-    <div class="relative">
-      <div class="gradient-mesh"></div>
+  <div class="relative overflow-hidden">
+    <div class="gradient-mesh"></div>
+    <Container>
       <Sectionhead>
-        <Fragment slot="title" class="text-gradient-animation">
-          Simple & Predictable Pricing
-        </Fragment>
-        <Fragment slot="desc">
-          Choose the perfect plan for your business
-        </Fragment>
+        <Fragment slot="title">Simple &amp; Predictable Pricing</Fragment>
+        <Fragment slot="desc">Start with our free tier and scale as you grow.</Fragment>
       </Sectionhead>
 
-      <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
+      <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg my-12">
         {
           pricing.map((item) => (
             <div class="relative group">
@@ -107,8 +103,8 @@ const pricing = [
           ))
         }
       </div>
-    </div>
-  </Container>
+    </Container>
+  </div>
 </Layout>
 
 <script>

@@ -17,12 +17,12 @@ const features = [
   {
     title: "Transform Stays into Stories",
     description: "Create memorable experiences that guests will love to share, boosting positive word-of-mouth for your property.",
-    icon: "ph:book-open-text-fill",
+    icon: "ph:book",
   },
   {
     title: "Time-Saving Solution",
     description: "Let guests find answers independently while you focus on other aspects of hosting. Reduce repetitive questions dramatically.",
-    icon: "ph:clock-countdown-fill",
+    icon: "ph:clock-counter-clockwise",
   },
   {
     title: "Offline Accessibility",
@@ -38,10 +38,10 @@ const features = [
 ---
 
 <div class="relative py-20">
-  <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white overflow-hidden"></div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold text-gradient-animation mb-4">
+      <h2 class="text-5xl leading-normal font-bold text-gradient-animation mb-4">
         Everything you need to host
       </h2>
       <p class="text-lg text-slate-600 mb-16 shimmer">
@@ -71,7 +71,7 @@ const features = [
     </div>
 
     <div class="mt-20 relative">
-      <div class="glass-card p-8 overflow-hidden">
+      <div class="glass-card p-8 relative">
         <div class="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
           <div class="text-center lg:text-left">
             <h3 class="text-3xl font-bold gradient-text mb-4">
@@ -101,8 +101,10 @@ const features = [
         </div>
 
         <!-- Decorative elements -->
-        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl" />
-        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
+        <div class="fixed pointer-events-none inset-0 overflow-hidden">
+          <div class="absolute top-1/4 right-1/4 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl" />
+          <div class="absolute bottom-1/4 left-1/4 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
+        </div>
       </div>
     </div>
   </div>
