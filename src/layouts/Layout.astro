@@ -54,14 +54,33 @@ const makeTitle = title
     />
   </head>
   <body>
-    <Navbar />
-    <slot />
-    <Footer />
+    <div class="flex flex-col min-h-screen overflow-hidden">
+      <Navbar />
+      <main class="flex-grow">
+        <slot />
+      </main>
+      <Footer />
+    </div>
     <style is:global>
       /* Improve Page speed */
       /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
       img {
         content-visibility: auto;
+      }
+
+      /* Prevent content gaps */
+      .flex-col > * {
+        margin-bottom: 0;
+      }
+      
+      /* Remove default margins that might cause gaps */
+      body {
+        margin: 0;
+      }
+      
+      main {
+        display: flex;
+        flex-direction: column;
       }
     </style>
   </body>

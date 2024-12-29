@@ -3,8 +3,9 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import { Image } from "astro:assets";
-import aboutImage from "../assets/about.png";
+import aboutImage from "../assets/about.jpg";
 import { Icon } from "astro-icon";
+// import headshotImage from "../assets/headshot-sax.jpg";
 
 const values = [
   {
@@ -26,6 +27,12 @@ const values = [
         <p class="text-lg mt-4 text-slate-600">
           We are a small but passionate team.
         </p>
+      <div class="flex justify-center mt-8">
+        <a href="/careers" class="button-gradient flex items-center gap-2 transform transition-all duration-200 hover:scale-105">
+          <span>Join Our Team</span>
+          <Icon name="ph:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
       </div>
 
       <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
@@ -37,22 +44,18 @@ const values = [
         </p>
       </div>
 
-      <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-xs mt-12">
+      <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-xs mt-12 pb-24">
         <div class="group">
           <div class="w-full aspect-square">
-            <picture>
-              <source srcset="https://mir-s3-cdn-cf.behance.net/user/276/2843061.54348e356f631.png" type="image/webp" sizes="(max-width: 800px) 100vw, 400px">
-              <img 
-                src="https://mir-s3-cdn-cf.behance.net/user/276/2843061.54348e356f631.png"
-                alt="Elon Zito"
-                sizes="(max-width: 800px) 100vw, 400px"
-                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
-                width="400"
-                height="400"
-                loading="lazy"
-                decoding="async"
-              >
-            </picture>
+            <Image 
+              src={aboutImage}
+              alt="About"
+              class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div class="mt-4 text-center">
             <h2 class="text-lg text-gray-800">Elon Zito</h2>

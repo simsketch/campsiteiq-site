@@ -1,0 +1,27 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon";
+import { Image } from "astro:assets";
+import yoyoLogo from "assets/yoyo-logo.png";
+import yaGottaEatLogo from "assets/ya-gotta-eat-logo.png";
+import alwaysOpenLogo from "assets/always-open-logo.png";
+import reserveTeamLogo from "assets/reserve-team-logo.png";
+import ourSacredThresholdsLogo from "assets/our-sacred-thresholds-logo.png";
+---
+
+<div class="mt-24">
+  <h2 class="text-center text-slate-500">Trusted by these partners</h2>
+  <div class="flex gap-8 md:gap-20 items-center justify-center mt-10 flex-wrap">
+    <Image src={yoyoLogo} alt="Yoyo Code" width={100} height={100} />
+    <Image src={yaGottaEatLogo} alt="Ya Gotta Eat" width={100} height={100} class="grayscale hover:grayscale-0 transition-all duration-300" />
+    <Image src={alwaysOpenLogo} alt="Always Open" width={100} height={100} />
+    <Image src={reserveTeamLogo} alt="Reserve Team" width={100} height={100} class="grayscale hover:grayscale-0 transition-all duration-300" />
+    <Image src={ourSacredThresholdsLogo} alt="Yoyo Code" width={100} height={100} class="grayscale hover:grayscale-0 transition-all duration-300" />
+    <!-- <Icon class="h-8 md:h-12" name="simple-icons:react" />
+    <Icon class="h-8 md:h-12" name="simple-icons:svelte" />
+    <Icon class="h-8 md:h-14" name="simple-icons:tailwindcss" />
+    <Icon class="h-8 md:h-16" name="simple-icons:alpinedotjs" />
+    <Icon class="h-8 md:h-12" name="simple-icons:vercel" />
+    <Icon class="h-8 md:h-12" name="simple-icons:astro" /> -->
+  </div>
+</div>
