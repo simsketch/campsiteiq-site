@@ -1,0 +1,268 @@
+---
+interface Props {
+  href?: string;
+  type?: "submit" | "button" | "reset";
+  class?: string;
+  inverted?: boolean;
+  width?: string;
+  height?: string;
+  [key: string]: any; // Allow any additional HTML attributes
+}
+
+const { href, type, class: className, inverted = false, width, height, ...rest } = Astro.props;
+
+const commonClasses = [
+  "button-gradient group relative inline-flex items-center justify-center",
+  inverted ? "button-inverted" : "",
+  className
+];
+
+const buttonStyle = {
+  width: width || 'auto',
+  height: height || 'auto',
+  minWidth: width ? 'unset' : undefined,
+  minHeight: height ? 'unset' : undefined
+};
+---
+
+{
+  type ? (
+    <button
+      type={type}
+      class:list={commonClasses}
+      data-particle-button
+      data-inverted={inverted.toString()}
+      style={buttonStyle}
+      {...rest}
+    >
+      <slot />
+      <canvas class="particle-canvas"></canvas>
+    </button>
+  ) : (
+    <a
+      href={href}
+      class:list={commonClasses}
+      data-particle-button
+      data-inverted={inverted.toString()}
+      style={buttonStyle}
+      {...rest}
+    >
+      <slot />
+      <canvas class="particle-canvas"></canvas>
+    </a>
+  )
+}
+
+<style>
+  .button-gradient {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    /* background: linear-gradient(90deg, #4c1d95 0%, #2563eb 100%); */
+    color: white;
+  }
+
+  .button-inverted {
+    background: white !important;
+    color: black;
+    border: 1px solid #000000;
+    transition: border-color 0.3s ease;
+  }
+
+  .button-inverted:hover {
+    border-color: #4c1d95;
+    color:white;
+  }
+
+  .particle-canvas {
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+  }
+</style>
+
+<script>
+  interface ParticleProps {
+    x: number;
+    y: number;
+    hue: number;
+    size: number;
+    speedX: number;
+    speedY: number;
+    life: number;
+    decay: number;
+    update: () => void;
+    draw: (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => void;
+  }
+
+  interface ParticleEffectProps {
+    canvas: HTMLCanvasElement;
+    button: HTMLElement;
+    ctx: CanvasRenderingContext2D;
+    particles: ParticleProps[];
+    isHovering: boolean;
+    mouseX: number;
+    mouseY: number;
+    hue: number;
+    hueChange: number;
+  }
+
+  class Particle implements ParticleProps {
+    x: number;
+    y: number;
+    hue: number;
+    size: number;
+    speedX: number;
+    speedY: number;
+    life: number;
+    decay: number;
+
+    constructor(x: number, y: number, hue: number) {
+      this.x = x;
+      this.y = y;
+      this.hue = hue;
+      this.size = Math.random() * 3 + 1; // Slightly larger particles
+      this.speedX = (Math.random() - 0.5) * 4; // Faster movement
+      this.speedY = (Math.random() - 0.5) * 4;
+      this.life = 1;
+      this.decay = Math.random() * 0.02 + 0.015; // Slower decay
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.life -= this.decay;
+      
+      // Add some waviness to particle movement
+      this.x += Math.sin(this.life * Math.PI) * 0.5;
+    }
+
+    draw(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
+      const opacity = this.life;
+      const glow = 20;
+      const button = canvas.closest('[data-particle-button]');
+      const isInverted = button?.getAttribute('data-inverted') === 'true';
+      
+      // Draw glow
+      ctx.shadowBlur = glow;
+      ctx.shadowColor = isInverted 
+        ? `hsla(${this.hue}, 0%, 0%, ${opacity * 0.5})`
+        : `hsla(${this.hue}, 100%, 60%, ${opacity * 0.5})`;
+      
+      // Draw particle
+      ctx.fillStyle = isInverted
+        ? `hsla(0, 0%, 100%, ${opacity})`
+        : `hsla(${this.hue}, 100%, 60%, ${opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Reset shadow
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  class ParticleEffect implements ParticleEffectProps {
+    canvas: HTMLCanvasElement;
+    button: HTMLElement;
+    ctx: CanvasRenderingContext2D;
+    particles: ParticleProps[];
+    isHovering: boolean;
+    mouseX: number;
+    mouseY: number;
+    hue: number;
+    hueChange: number;
+    lastTime: number;
+
+    constructor(canvas: HTMLCanvasElement, button: HTMLElement) {
+      this.canvas = canvas;
+      this.button = button;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Could not get canvas context');
+      this.ctx = ctx;
+      this.particles = [];
+      this.isHovering = false;
+      this.mouseX = 0;
+      this.mouseY = 0;
+      this.hue = 230;
+      this.hueChange = 0.5;
+      this.lastTime = 0;
+
+      this.resize();
+      this.setupEventListeners();
+      this.animate();
+    }
+
+    resize() {
+      const rect = this.button.getBoundingClientRect();
+      this.canvas.width = rect.width * 1.5; // Larger canvas for particles to move in
+      this.canvas.height = rect.height * 1.5;
+      this.canvas.style.width = rect.width * 1.5 + 'px';
+      this.canvas.style.height = rect.height * 1.5 + 'px';
+      this.canvas.style.left = '-25%';
+      this.canvas.style.top = '-25%';
+    }
+
+    setupEventListeners() {
+      window.addEventListener('resize', () => this.resize());
+      
+      this.button.addEventListener('mouseenter', () => {
+        this.isHovering = true;
+      });
+      
+      this.button.addEventListener('mouseleave', () => {
+        this.isHovering = false;
+      });
+      
+      this.button.addEventListener('mousemove', (e) => {
+        const rect = this.button.getBoundingClientRect();
+        this.mouseX = (e.clientX - rect.left) * 1.5;
+        this.mouseY = (e.clientY - rect.top) * 1.5;
+      });
+    }
+
+    createParticles() {
+      if (this.isHovering) {
+        for (let i = 0; i < 3; i++) { // Create more particles
+          this.particles.push(new Particle(this.mouseX, this.mouseY, this.hue));
+        }
+        this.hue += this.hueChange;
+        if (this.hue > 280 || this.hue < 230) this.hueChange *= -1;
+      }
+    }
+
+    animate(currentTime: number) {
+      const deltaTime = currentTime - this.lastTime;
+      this.lastTime = currentTime;
+
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      
+      this.createParticles();
+      
+      for (let i = this.particles.length - 1; i >= 0; i--) {
+        const particle = this.particles[i] as Particle;
+        particle.update();
+        particle.draw(this.ctx, this.canvas);
+        
+        if (particle.life <= 0) {
+          this.particles.splice(i, 1);
+        }
+      }
+      
+      requestAnimationFrame((time) => this.animate(time));
+    }
+  }
+
+  // Initialize particle effects for all buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-particle-button]').forEach(button => {
+      const canvas = button.querySelector('.particle-canvas');
+      if (canvas instanceof HTMLCanvasElement) {
+        new ParticleEffect(canvas, button as HTMLElement);
+      }
+    });
+  });
+</script> 

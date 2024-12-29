@@ -2,50 +2,35 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon";
 import dashboardImage from "assets/dashboard.png";
+import ParticleButton from "./ui/ParticleButton.astro";
 
 const features = [
   {
-    title: "Personalized Recommendations",
-    description: "Curate a list of local attractions, restaurants, and hidden gems that align with your guests' preferences and interests.",
-    icon: "ph:star-fill",
+    title: "Wayfinding",
+    description: "Help guests navigate your property with ease. Add photos, descriptions, and directions to every amenity.",
+    icon: "fluent:location-16-regular",
   },
   {
-    title: "Interactive Digital Guidebook",
-    description: "Replace traditional printed guidebooks with an interactive digital platform that guests can access on their smartphones or tablets.",
-    icon: "ph:device-mobile-camera-fill",
+    title: "QR Code Access",
+    description: "Generate unique QR codes for each property. Guests can access your guide instantly, no app required.",
+    icon: "fluent:qr-code-20-regular",
   },
   {
-    title: "Transform Stays into Stories",
-    description: "Create memorable experiences that guests will love to share, boosting positive word-of-mouth for your property.",
-    icon: "ph:book",
+    title: "Digital Museum",
+    description: "Share the story of your space. Add historical facts, artwork details, and unique features.",
+    icon: "fluent:building-shop-20-regular",
   },
-  {
-    title: "Time-Saving Solution",
-    description: "Let guests find answers independently while you focus on other aspects of hosting. Reduce repetitive questions dramatically.",
-    icon: "ph:clock-counter-clockwise",
-  },
-  {
-    title: "Offline Accessibility",
-    description: "Guests can download the guidebook before their trip, enabling access to maps and recommendations even without internet.",
-    icon: "ph:cloud-arrow-down-fill",
-  },
-  {
-    title: "Seamless Integration",
-    description: "Quickly input information, upload images, and customize the guidebook to reflect your unique hosting style.",
-    icon: "ph:puzzle-piece-fill",
-  }
 ];
 ---
 
-<div class="relative py-20">
-  <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white overflow-hidden"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-5xl leading-normal font-bold text-gradient-animation mb-4">
-        Everything you need to host
+<div class="relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">
+        Everything You Need
       </h2>
-      <p class="text-lg text-slate-600 mb-16 shimmer">
-        Create personalized recommendations for your guests, ensuring a unique and memorable stay
+      <p class="text-lg text-slate-600">
+        Create beautiful, interactive guides that delight your guests and save you time.
       </p>
     </div>
 
@@ -80,17 +65,17 @@ const features = [
             <p class="text-lg text-slate-600 mb-8">
               Manage all your properties, update content, and track analytics from one central location. Keep your guides up-to-date with real-time changes.
             </p>
-            <a href="/features" class="button-gradient inline-flex items-center">
+            <ParticleButton href="/features" class="button-gradient inline-flex items-center">
               Learn More
               <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </a>
+            </ParticleButton>
           </div>
           <div class="relative group">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <Image
-            src={dashboardImage}
+              src={dashboardImage}
               alt="TouchGuides Dashboard"
               width={600}
               height={400}

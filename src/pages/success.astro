@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ParticleButton from '../components/ui/ParticleButton.astro';
+---
+
+<Layout title="Success | TouchGuides">
+  <main class="min-h-screen flex items-center justify-center bg-white">
+    <div class="max-w-2xl mx-auto px-4 py-16 text-center">
+      <div class="mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-green-500 mb-4" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Thank You!</h1>
+        <p class="text-lg text-gray-600 mb-8">
+          Your message has been successfully sent. We'll get back to you as soon as possible.
+        </p>
+      </div>
+      <ParticleButton href="/" inverted>
+        Return to Homepage
+      </ParticleButton>
+    </div>
+  </main>
+</Layout> 

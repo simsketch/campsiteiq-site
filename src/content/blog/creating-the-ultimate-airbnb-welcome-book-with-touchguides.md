@@ -6,7 +6,7 @@ image: {
     src: "https://images.unsplash.com/photo-1591825729269-caeb344f6df2?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     alt: "Creating the Ultimate Airbnb Welcome Book"
 }
-publishDate: "2022-11-09 16:39"
+publishDate: "2024-12-29 16:39"
 category: "Courses"
 author: "Elon Zito"
 tags: [webdev, tailwindcss, frontend]

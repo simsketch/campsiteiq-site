@@ -2,6 +2,7 @@
 import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
+import ReturnToTop from "@components/ui/ReturnToTop.astro";
 import "../styles/global.css";
 
 export interface Props {
@@ -27,7 +28,7 @@ const makeTitle = title
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
@@ -60,6 +61,7 @@ const makeTitle = title
         <slot />
       </main>
       <Footer />
+      <ReturnToTop />
     </div>
     <style is:global>
       /* Improve Page speed */

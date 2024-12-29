@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import iphone from "assets/hero-image.png";
 import Link from "@components/ui/link.astro";
+import ParticleButton from "@components/ui/ParticleButton.astro";
 import { Icon } from "astro-icon";
 ---
 
@@ -34,23 +35,16 @@ import { Icon } from "astro-icon";
       Transform stays into stories worth sharing with a digital guidebook. Spend less time answering guests!
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
-      <Link
+      <ParticleButton
         href="https://portal.touchguides.com"
-        target="_blank"
-        class="button-gradient flex gap-1 items-center justify-center"
-        rel="noopener">
+        class="flex gap-1 items-center justify-center">
         <Icon class="text-white w-5 h-5" name="bx:bxs-cloud" />
         Get Started
-      </Link>
-      <Link
-        size="lg"
-        style="outline"
-        rel="noopener"
-        href="/features"
-        class="gradient-border flex gap-1 items-center justify-center"
-        >
+      </ParticleButton>
+      <ParticleButton
+        href="/features" inverted>
         Learn More
-      </Link>
+      </ParticleButton>
     </div>
   </div>
 </main>

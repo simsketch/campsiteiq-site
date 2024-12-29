@@ -5,6 +5,7 @@ import Sectionhead from "@components/sectionhead.astro";
 import { Image } from "astro:assets";
 import aboutImage from "../assets/about.jpg";
 import { Icon } from "astro-icon";
+import ParticleButton from "@components/ui/ParticleButton.astro";
 // import headshotImage from "../assets/headshot-sax.jpg";
 
 const values = [
@@ -28,10 +29,9 @@ const values = [
           We are a small but passionate team.
         </p>
       <div class="flex justify-center mt-8">
-        <a href="/careers" class="button-gradient flex items-center gap-2 transform transition-all duration-200 hover:scale-105">
-          <span>Join Our Team</span>
-          <Icon name="ph:arrow-right" class="w-4 h-4" />
-        </a>
+        <ParticleButton href="/careers">
+          Join Our Team
+        </ParticleButton>
       </div>
       </div>
 

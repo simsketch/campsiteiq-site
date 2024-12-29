@@ -1,5 +1,6 @@
 ---
 import Link from "./ui/link.astro";
+import ParticleButton from "./ui/ParticleButton.astro";
 ---
 
 <div class="relative">
@@ -13,10 +14,12 @@ import Link from "./ui/link.astro";
           Join hundreds of property owners who are delighting their guests with TouchGuides.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="https://portal.touchguides.com" class="button-gradient">Get Started</Link>
-          <Link href="/features" style="outline" class="gradient-border">
+          <ParticleButton href="https://portal.touchguides.com">
+            Get Started
+          </ParticleButton>
+          <ParticleButton href="/features" inverted>
             Learn More
-          </Link>
+          </ParticleButton>
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 ---
 import Container from "@components/container.astro";
 import Link from "@components/ui/link.astro";
+import ParticleButton from "@components/ui/ParticleButton.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { Image } from "astro:assets";
 import logoImage from "assets/logo.png";
-
 
 const menuitems: {
   title: string;
@@ -37,11 +37,6 @@ const menuitems: {
     title: "Careers",
     path: "/careers",
   }
-  // {
-  //   title: "Pro Version",
-  //   badge: true,
-  //   path: "https://astroship-pro.web3templates.com/",
-  // },
 ];
 ---
 
@@ -50,11 +45,15 @@ const menuitems: {
     <header class="flex flex-col lg:flex-row justify-between items-center my-2 backdrop-blur-md bg-white/80 rounded-2xl px-8 py-4 shadow-sm mx-[-1rem] transition-all duration-200">
       <Astronav>
         <div class="flex w-full lg:w-auto items-center justify-between">
-          <a href="/" class="text-lg transform transition-transform hover:scale-105 duration-200">
-            <Image src={logoImage} alt="TouchGuides logo" width="180" class="mr-10"/>
-          </a>
+
+            <a href="/" class="text-lg transform transition-transform hover:scale-105 duration-200">
+              <Image src={logoImage} alt="TouchGuides logo" width="180" class="mr-10"/>
+            </a>
+          
           <div class="block lg:hidden">
-            <MenuIcon class="w-4 h-4 text-gray-800 hover:text-indigo-600 transition-colors duration-200" />
+  
+              <MenuIcon class="w-4 h-4 text-gray-800 hover:text-indigo-600 transition-colors duration-200" />
+            
           </div>
         </div>
         <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0 justify-between">
@@ -63,28 +62,32 @@ const menuitems: {
               menuitems.map((item, index) => (
                 <>
                   {item.children && (
-                    <Dropdown
-                      title={item.title}
-                      children={item.children}
-                      lastItem={index === menuitems.length - 1}
-                    />
+          
+                      <Dropdown
+                        title={item.title}
+                        children={item.children}
+                        lastItem={index === menuitems.length - 1}
+                      />
+                    
                   )}
 
                   {!item.children && (
                     <li>
-                      <a
-                        href={item.path}
-                        class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900 relative group">
-                        <span class="transition-all duration-200 ease-in-out">
-                          {item.title}
-                        </span>
-                        <span class="absolute inset-x-0 bottom-0 h-0.5 bg-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out"></span>
-                        {item.badge && (
-                          <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                            New
+            
+                        <a
+                          href={item.path}
+                          class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900 relative group">
+                          <span class="transition-all duration-200 ease-in-out">
+                            {item.title}
                           </span>
-                        )}
-                      </a>
+                          <span class="absolute inset-x-0 bottom-0 h-0.5 bg-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out"></span>
+                          {item.badge && (
+                            <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                              New
+                            </span>
+                          )}
+                        </a>
+                      
                     </li>
                   )}
                 </>
@@ -92,14 +95,20 @@ const menuitems: {
             }
           </ul>
           <div class="lg:hidden flex items-center mt-3 gap-4">
-            <Link href="https://portal.touchguides.com" class="button-gradient w-full transform transition-all duration-200 hover:scale-105 hover:shadow-lg">Sign up</Link>
-            <Link href="https://portal.touchguides.com" class="text-slate-600 hover:text-slate-900 w-full text-center py-2 transition-colors duration-200">Log in</Link>
+  
+              <Link href="https://portal.touchguides.com" class="button-gradient w-full transform transition-all duration-200 hover:scale-105 hover:shadow-lg">Sign up</Link>
+            
+  
+              <Link href="https://portal.touchguides.com" class="text-slate-600 hover:text-slate-900 w-full text-center py-2 transition-colors duration-200">Log in</Link>
+            
           </div>
         </MenuItems>
       </Astronav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
-          <Link href="https://portal.touchguides.com" class="button-gradient transform transition-all duration-200 hover:scale-105 hover:shadow-lg">Sign up</Link>
+          <ParticleButton href="https://portal.touchguides.com" class="button-gradient">
+              Sign Up
+          </ParticleButton>
           <a href="https://portal.touchguides.com" class="text-slate-600 hover:text-slate-900 transition-colors duration-200 relative group">
             Log in
             <span class="absolute inset-x-0 bottom-0 h-0.5 bg-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out"></span>
@@ -112,29 +121,7 @@ const menuitems: {
 
 <div class="h-24"></div>
 
-<button
-  id="to-top-button"
-  class="fixed bottom-5 right-5 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg cursor-pointer transition-all duration-300 opacity-0 translate-y-10 hover:bg-white z-[9999]"
-  aria-label="Return to top"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="h-6 w-6 text-gray-800"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M5 10l7-7m0 0l7 7m-7-7v18"
-    />
-  </svg>
-</button>
-
 <style>
-  /* Add this if you don't already have a button-gradient style */
   .button-gradient {
     @apply px-5 py-2.5 font-medium text-white rounded-lg transition-all;
     background: linear-gradient(to right, #4F46E5, #7C3AED);
@@ -146,37 +133,4 @@ const menuitems: {
     background-position: right center;
     box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
   }
-
-  #to-top-button.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
 </style>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toTopButton = document.getElementById('to-top-button');
-    
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        toTopButton?.classList.add('show');
-      } else {
-        toTopButton?.classList.remove('show');
-      }
-    };
-
-    const scrollToTop = (e) => {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    };
-
-    // Add event listeners
-    window.addEventListener('scroll', handleScroll);
-    if (toTopButton) {
-      toTopButton.onclick = scrollToTop;
-    }
-  });
-</script>

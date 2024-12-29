@@ -1,12 +1,13 @@
----
+---import ParticleButton from "./ui/ParticleButton.astro";
 const { formId = "contact", subject = "Contact Form Submission" } = Astro.props;
+
 ---
 
 <form
   action="https://api.web3forms.com/submit"
   method="POST"
   id={formId}
-  class="glass-card p-8">
+  >
   <input type="hidden" name="access_key" value="20109da6-d15c-4108-8462-c51d68b8ef2b" />
   <input type="hidden" name="subject" value={subject} />
   <input type="hidden" name="redirect" value="https://web3forms.com/success" />
@@ -16,14 +17,13 @@ const { formId = "contact", subject = "Contact Form Submission" } = Astro.props;
       type="text"
       placeholder="Full Name"
       required
-      class="w-full px-4 py-3 border border-slate-300 rounded-lg hover:border-blue-500 transition-colors"
+      class="w-full px-4 py-3 border border-slate-300 rounded-lg"
       name="name"
     />
     <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-      Please provide your full name.
+      Please provide your name.
     </div>
   </div>
-
   <div class="mb-5">
     <label for="email_address" class="sr-only">Email Address</label>
     <input
@@ -89,11 +89,9 @@ const { formId = "contact", subject = "Contact Form Submission" } = Astro.props;
     </div>
   </div>
 
-  <button
-    class="button-gradient w-full"
-    type="submit">
-    {formId === "job-application" ? "Submit Application" : "Send Message"}
-  </button>
+  <ParticleButton type="submit" width="100%" height="65px">
+      {formId === "job-application" ? "Submit Application" : "Send Message"}
+  </ParticleButton>
 </form>
 
 <style>

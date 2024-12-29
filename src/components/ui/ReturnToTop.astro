@@ -1,0 +1,91 @@
+---
+import ParticleButton from "./ParticleButton.astro";
+---
+
+<div class="fixed bottom-8 right-8 z-[9999]">
+  <ParticleButton
+    type="button"
+    id="to-top-button"
+    inverted
+    class="!p-3 flex items-center justify-center shadow-lg"
+    width="48px"
+    height="48px"
+    aria-label="Return to top"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 10l7-7m0 0l7 7m-7-7v18"
+      />
+    </svg>
+  </ParticleButton>
+</div>
+
+<style>
+  #to-top-button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    border-radius: 9999px !important;
+  }
+
+  #to-top-button.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #to-top-button:not(.show) {
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const setupToTopButton = () => {
+    const toTopButton = document.getElementById('to-top-button');
+    if (!toTopButton) return;
+    
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        toTopButton.classList.add('show');
+      } else {
+        toTopButton.classList.remove('show');
+      }
+    };
+
+    const scrollToTop = (e: Event) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+
+    // Initial check
+    handleScroll();
+
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    toTopButton.addEventListener('click', scrollToTop);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      toTopButton.removeEventListener('click', scrollToTop);
+    };
+  };
+
+  // Setup on initial load
+  document.addEventListener('DOMContentLoaded', setupToTopButton);
+
+  // Setup on client-side navigation (if using a router)
+  document.addEventListener('astro:page-load', setupToTopButton);
+</script>
