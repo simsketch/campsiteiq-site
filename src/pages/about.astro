@@ -4,6 +4,7 @@ import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import { Image } from "astro:assets";
 import aboutImage from "../assets/about.jpg";
+import heroImage from "../assets/hero.png";
 import { Icon } from "astro-icon";
 import ParticleButton from "@components/ui/ParticleButton.astro";
 // import headshotImage from "../assets/headshot-sax.jpg";
@@ -44,7 +45,7 @@ const values = [
         </p>
       </div>
 
-      <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-xs mt-12 pb-24">
+      <div class="grid md:grid-cols-2 gap-10 max-w-xs mt-12 pb-24">
         <div class="group">
           <div class="w-full aspect-square">
             <Image 
@@ -60,6 +61,23 @@ const values = [
           <div class="mt-4 text-center">
             <h2 class="text-lg text-gray-800">Elon Zito</h2>
             <h3 class="text-sm text-slate-500">Founder</h3>
+          </div>
+        </div>
+        <div class="group">
+          <div class="w-full aspect-square">
+            <Image 
+              src={heroImage}
+              alt="About"
+              class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="mt-4 text-center">
+            <h2 class="text-lg text-gray-800">You?</h2>
+            <h3 class="text-sm text-slate-500">Future Team Member</h3>
           </div>
         </div>
       </div>
