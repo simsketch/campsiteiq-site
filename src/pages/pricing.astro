@@ -2,19 +2,19 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
-import Pricing from "@components/pricing.astro";
+import PricingComponent from "@components/pricing.astro";
 import { Icon } from "astro-icon";
 
 const pricing = [
   {
-    name: "Personal",
-    price: "Free",
+    name: "Startup",
+    price: "Free Trial",
     popular: false,
     features: [
-      "Lifetime free",
-      "Up to 3 users",
+      "Up to 1 property",
+      "99% Uptime SLA",
       "Unlimited Pages",
-      "Astro Sub pages",
+      "TouchGuides Subdomain",
       "Basic Integrations",
       "Community Support",
     ],
@@ -24,7 +24,7 @@ const pricing = [
     },
   },
   {
-    name: "Startup (most popular)",
+    name: "Landlord (most popular)",
     price: {
       monthly: "$19",
       annual: "$15",
@@ -108,7 +108,7 @@ const pricing = [
 </Layout>
 
 <script>
-  const toggle = document.getElementById('pricing-toggle');
+  const toggle = document.getElementById('pricing-toggle') as HTMLInputElement;
   const priceElements = document.querySelectorAll('[data-price-monthly]');
 
   toggle?.addEventListener('change', () => {
