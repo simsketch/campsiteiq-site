@@ -3,6 +3,9 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon";
 import dashboardImage from "assets/dashboard.png";
 import ParticleButton from "./ui/ParticleButton.astro";
+import { Picture } from "astro:assets";
+import searchAnimationGif from "assets/search-animation-repeat.gif";
+
 
 const features = [
   {
@@ -22,12 +25,12 @@ const features = [
   },
 ];
 ---
-
+<div class="flex justify-center"><Picture src={searchAnimationGif} alt="TouchGuides app on an iPhone" width={800} height={200} /></div>
 <div class="relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4 md:leading-normal">
-        Everything You Need
+        Needy Guests? Problem Solved.
       </h2>
       <p class="text-lg text-slate-600">
         Create beautiful, interactive guides that delight your guests and save you time.

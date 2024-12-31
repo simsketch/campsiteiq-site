@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import iphone from "assets/hero-no-shadow.png";
 import shadow from "assets/shadow.png";
+import searchAnimation from "assets/search-animation.webm";
 import Link from "@components/ui/link.astro";
 import ParticleButton from "@components/ui/ParticleButton.astro";
 import { Icon } from "astro-icon";
@@ -12,6 +13,14 @@ import { Icon } from "astro-icon";
   <!-- <div class="gradient-mesh"></div> -->
   <div class="py-6 md:order-1 md:block">
     <div class="relative group">
+      <!-- <video
+        autoplay
+        muted
+        playsinline
+        class="absolute bottom-0 w-24 h-24 object-cover"
+      >
+        <source src={searchAnimation} type="video/webm" />
+      </video> -->
       <!-- <div class="gradient-hover"></div> -->
       <div class="hero-image floating-animation">
         <Picture 
@@ -21,7 +30,6 @@ import { Icon } from "astro-icon";
           height={400}
         />
       </div>
-
       <Picture 
         src={shadow} 
         alt="TouchGuides app on an iPhone" 
@@ -29,6 +37,7 @@ import { Icon } from "astro-icon";
         height={400}
         class="absolute top-60 left-0 w-full h-full opacity-20"
       />
+
       <!-- <div class="gradient-glow"></div> -->
     </div>
   </div>
