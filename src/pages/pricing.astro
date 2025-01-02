@@ -5,6 +5,9 @@ import Sectionhead from "@components/sectionhead.astro";
 import PricingComponent from "@components/pricing.astro";
 import { Icon } from "astro-icon";
 
+// Add environment variable
+const PORTAL_URL = import.meta.env.PUBLIC_PORTAL_URL;
+
 const pricing = [
   {
     name: "Startup",
@@ -42,7 +45,7 @@ const pricing = [
     ],
     button: {
       text: "Get Started",
-      link: "https://portal.touchguides.com",
+      link: `${PORTAL_URL}/sign-up`,
     },
   },
   {

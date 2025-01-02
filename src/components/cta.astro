@@ -1,6 +1,8 @@
 ---
 import Link from "./ui/link.astro";
 import ParticleButton from "./ui/ParticleButton.astro";
+
+const PORTAL_URL = import.meta.env.PUBLIC_PORTAL_URL;
 ---
 
 <div class="relative">
@@ -14,7 +16,7 @@ import ParticleButton from "./ui/ParticleButton.astro";
           Join hundreds of property owners who are delighting their guests with TouchGuides.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <ParticleButton href="https://portal.touchguides.com">
+          <ParticleButton href={`${PORTAL_URL}/sign-up`}>
             Get Started
           </ParticleButton>
           <ParticleButton href="/features" inverted>
