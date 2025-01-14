@@ -5,7 +5,7 @@ location: "Remote"
 type: "Full-time"
 published: 2024-03-20
 featured: true
-summary: "We're seeking a visionary Chief Marketing Officer to lead TouchGuides' marketing strategy and execution. As CMO, you'll work directly with the founding team to build our brand, drive customer acquisition, and establish TouchGuides as the leader in digital guides and interactive experiences. You'll be instrumental in developing our go-to-market strategy, building our marketing team, and creating compelling narratives that resonate with our target markets. This is a unique opportunity to shape the future of how people interact with physical spaces through innovative technology."
+summary: "We're seeking a visionary Chief Marketing Officer to lead CampsiteIQ's marketing strategy and execution. As CMO, you'll work directly with the founding team to build our brand, drive customer acquisition, and establish CampsiteIQ as the leader in campground management software. You'll be instrumental in developing our go-to-market strategy, building our marketing team, and creating compelling narratives that resonate with our target markets. This is a unique opportunity to shape the future of outdoor hospitality through innovative technology."
 requirements:
   - "10+ years of marketing experience with 5+ years in senior marketing roles"
   - "Proven track record of building and scaling B2B SaaS marketing programs"

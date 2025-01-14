@@ -3,7 +3,8 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import { Image } from "astro:assets";
-import aboutImage from "../assets/about.jpg";
+import tiffanyImage from "../assets/tiffany.png";
+import elonImage from "../assets/elon.png";
 import heroImage from "../assets/hero.png";
 import { Icon } from "astro-icon";
 import ParticleButton from "@components/ui/ParticleButton.astro";
@@ -38,22 +39,39 @@ const values = [
 
       <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
         <h2 class="font-bold text-3xl text-gray-800">
-          Empowering hosts <em>and</em> guests with TouchGuides.
+          Empowering campgrounds with modern technology.
         </h2>
         <p class="text-lg leading-relaxed text-slate-500">
-          Transform stays into stories worth sharing with a digital guidebook. Spend less time answering guests!
+          We're building the future of campground management software. Our mission is to help campground owners and operators streamline their business with AI-powered tools and digital solutions that delight both staff and guests.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-10 max-w-xs mt-12 pb-24">
+      <div class="grid md:grid-cols-4 gap-6 mt-12 pb-24">
         <div class="group">
           <div class="w-full aspect-square">
             <Image 
-              src={aboutImage}
+              src={tiffanyImage}
               alt="About"
               class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
-              width="400"
-              height="400"
+              width="200"
+              height="200"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="mt-4 text-center">
+            <h2 class="text-lg text-gray-800">Tiffany Cruz</h2>
+            <h3 class="text-sm text-slate-500">Founder</h3>
+          </div>
+        </div>
+        <div class="group">
+          <div class="w-full aspect-square">
+            <Image 
+              src={elonImage}
+              alt="About"
+              class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+              width="200"
+              height="200"
               loading="lazy"
               decoding="async"
             />
@@ -69,8 +87,8 @@ const values = [
               src={heroImage}
               alt="About"
               class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
-              width="400"
-              height="400"
+              width="200"
+              height="200"
               loading="lazy"
               decoding="async"
             />

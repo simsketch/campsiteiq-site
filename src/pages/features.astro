@@ -3,51 +3,58 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import { Image } from "astro:assets";
-import featuresOne from "../assets/features-qr.png";
-import featuresTwo from "../assets/features-wayfinder.png";
-import featuresThree from "../assets/features-museum.png";
-import featuresFour from "../assets/features-chart.png";
-// import fullWidthImage from "../assets/features-dashboard.png";
 
 const features = [
   {
-    title: "QR Code Access",
-    description: "Visitors simply scan a QR code to instantly access your digital guide. No app downloads required, making it seamless for guests to start exploring your space.",
-    image: featuresOne,
+    title: "AI Reservation Assistant",
+    description: "Let our AI handle bookings and inquiries 24/7. Automatically manage your calendar, answer common questions, and convert more leads into bookings.",
+    image: {
+      src: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2000&auto=format&fit=crop",
+      alt: "AI Reservation Assistant Interface"
+    },
     benefits: [
-      "Instant access - no downloads needed",
-      "Custom branded QR codes",
-      "Works on any smartphone"
+      "24/7 automated booking management",
+      "Natural language guest communication",
+      "Seamless calendar integration"
     ]
   },
   {
-    title: "Interactive Mapping",
-    description: "Create intuitive wayfinding experiences with interactive maps. Help visitors navigate your space confidently while discovering points of interest along the way.",
-    image: featuresTwo,
+    title: "Digital Guidebooks",
+    description: "Create beautiful digital guides for your campground that help guests find everything they need. From trail maps to local attractions, make every stay memorable.",
+    image: {
+      src: "https://images.unsplash.com/photo-1496545672447-f699b503d270?q=80&w=2000&auto=format&fit=crop",
+      alt: "Digital Trail Map and Guidebook"
+    },
     benefits: [
-      "Custom floor plans and maps",
-      "Point-to-point navigation",
-      "Location-aware content"
+      "Interactive campground maps",
+      "Local attraction guides",
+      "Real-time updates"
     ]
   },
   {
-    title: "Content Management",
-    description: "Easily update your guides in real-time through our intuitive dashboard. Add new exhibits, update information, or modify routes instantly without any technical knowledge.",
-    image: featuresThree,
+    title: "Management Dashboard",
+    description: "One central hub to manage your entire operation. Track bookings, update guides, and analyze performance metrics all in one place.",
+    image: {
+      src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+      alt: "Campground Management Dashboard"
+    },
     benefits: [
-      "Real-time content updates",
-      "Rich media support",
-      "Multi-language capabilities"
+      "Unified booking management",
+      "Analytics and reporting",
+      "Guide content management"
     ]
   },
   {
-    title: "Visitor Analytics",
-    description: "Gain valuable insights into how visitors interact with your space. Track popular routes, dwell times, and engagement metrics to optimize the visitor experience.",
-    image: featuresFour,
+    title: "Guest Experience",
+    description: "Delight your guests with modern tools that make their stay easier and more enjoyable. From check-in instructions to local recommendations.",
+    image: {
+      src: "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=2000&auto=format&fit=crop",
+      alt: "Happy Campers at Sunset"
+    },
     benefits: [
-      "Detailed engagement metrics",
-      "Visitor flow analysis",
-      "Custom reporting tools"
+      "Automated check-in/out",
+      "Emergency information",
+      "Local recommendations"
     ]
   }
 ];
@@ -78,7 +85,7 @@ const floatAnimation = {
       <Sectionhead>
         <Fragment slot="title">Features</Fragment>
         <Fragment slot="desc">
-          Transform your physical space into an interactive experience
+          Modern tools for modern campgrounds
         </Fragment>
       </Sectionhead>
 
@@ -89,12 +96,12 @@ const floatAnimation = {
               <div class="relative">
                 <div class="gradient-hover"></div>
                 <div class="relative glass-card p-2">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
+                  <img
+                    src={feature.image.src}
+                    alt={feature.image.alt}
                     class="w-full rounded-xl shadow-lg hover-scale"
-                    width={500}
-                    height={500}
+                    width="500"
+                    height="500"
                   />
                 </div>
                 <div class="gradient-glow"></div>
@@ -132,11 +139,11 @@ const floatAnimation = {
               <div class="text-center max-w-3xl mx-auto mb-12 relative">
                 <span class="absolute -inset-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-xl"></span>
                 <h2 class="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                  Everything you need to host
+                  Everything you need to succeed
                 </h2>
                 <p class="text-lg text-slate-600 relative">
-                  Our comprehensive dashboard gives you all the tools needed to manage your digital guides, 
-                  track analytics, and create engaging experiences.
+                  Our comprehensive platform gives you all the tools needed to manage your campground, 
+                  delight guests, and grow your business.
                 </p>
               </div>
             </Container>
@@ -149,12 +156,12 @@ const floatAnimation = {
               <div class="relative">
                 <div class="gradient-hover"></div>
                 <div class="relative glass-card p-2">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
+                  <img
+                    src={feature.image.src}
+                    alt={feature.image.alt}
                     class="w-full rounded-xl shadow-lg hover-scale"
-                    width={500}
-                    height={500}
+                    width="500"
+                    height="500"
                   />
                 </div>
                 <div class="gradient-glow"></div>

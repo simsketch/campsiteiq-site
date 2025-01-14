@@ -2,69 +2,17 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
-import PricingComponent from "@components/pricing.astro";
 import { Icon } from "astro-icon";
+import { Image } from "astro:assets";
+import Contactform from "@components/contactform.astro";
 
-// Add environment variable
-const PORTAL_URL = import.meta.env.PUBLIC_PORTAL_URL;
-
-const pricing = [
-  {
-    name: "Startup",
-    price: "Free Trial",
-    popular: false,
-    features: [
-      "Up to 1 property",
-      "99% Uptime SLA",
-      "Unlimited Pages",
-      "TouchGuides Subdomain",
-      "Basic Integrations",
-      "Community Support",
-    ],
-    button: {
-      text: "Get Started",
-      link: "/",
-    },
-  },
-  {
-    name: "Landlord (most popular)",
-    price: {
-      monthly: "$19",
-      annual: "$15",
-      discount: "20%",
-      original: "$25",
-    },
-    popular: true,
-    features: [
-      "Up to 2 properties",
-      "$5 each additional property",
-      "Unlimited Pages",
-      "TouchGuides Subdomain",
-      "Advanced Integrations",
-      "Priority Support",
-    ],
-    button: {
-      text: "Get Started",
-      link: `${PORTAL_URL}/sign-up`,
-    },
-  },
-  {
-    name: "Enterprise",
-    price: "Custom Pricing",
-    popular: false,
-    features: [
-      "Unlimited properties",
-      "99% Uptime SLA",
-      "Dedicated Account Manager",
-      "Custom Domain",
-      "Advanced Integrations",
-      "Priority Support",
-    ],
-    button: {
-      text: "Contact us",
-      link: "/contact",
-    },
-  },
+const features = [
+  "AI-powered 24/7 reservation management",
+  "Digital guidebooks for guests",
+  "Centralized dashboard",
+  "Analytics and reporting",
+  "Guest communication tools",
+  "Custom branding options"
 ];
 ---
 
@@ -73,54 +21,69 @@ const pricing = [
     <div class="gradient-mesh"></div>
     <Container>
       <Sectionhead>
-        <Fragment slot="title">Simple &amp; Predictable Pricing</Fragment>
-        <Fragment slot="desc">Start with our free tier and scale as you grow.</Fragment>
+        <Fragment slot="title">Transform Your Campground Operations</Fragment>
+        <Fragment slot="desc">Join forward-thinking campground owners who are delighting guests and increasing revenue with our AI-powered platform.</Fragment>
       </Sectionhead>
 
-      <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg my-12">
-        {
-          pricing.map((item) => (
-            <div class="relative group">
-              <div class="gradient-hover"></div>
-              <div class="glass-card p-8 text-center">
-                <h3 class="text-2xl font-bold gradient-text mb-4 tracking-tight">{item.name}</h3>
-                <p class="text-3xl font-bold mb-6">
-                  {typeof item.price === "object" ? `${item.price.monthly}/mo` : item.price}
-                </p>
-                <ul class="space-y-4">
-                  {item.features.map((feature) => (
-                    <li class="flex items-center gap-2">
-                      <Icon class="w-5 h-5 text-blue-500" name="ph:check-circle-fill" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div class="mt-8">
-                  <a href={item.button.link} class={`button-gradient w-full text-center ${item.popular ? 'gradient-bg' : ''}`}>
-                    {item.button.text}
-                  </a>
-                </div>
-              </div>
-              <div class="gradient-glow"></div>
-            </div>
-          ))
-        }
+      <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
+        <div class="relative group">
+          <div class="glass-card p-8 transition-all duration-300 hover:shadow-xl bg-white/90 backdrop-blur-lg rounded-2xl">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4">Enterprise Features</h2>
+            <ul class="space-y-4 mb-8">
+              {features.map((feature) => (
+                <li class="flex items-center gap-3">
+                  <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shrink-0">
+                    <Icon class="w-4 h-4 text-white" name="ph:check-bold" />
+                  </div>
+                  <span class="text-slate-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="text-slate-600 italic">
+              Custom pricing based on your campground's size and needs.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="glass-card p-8 transition-all duration-300 hover:shadow-xl bg-white/90 backdrop-blur-lg rounded-2xl">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4">Contact Us</h2>
+            <p class="text-slate-600 mb-6">
+              Fill out the form below and we'll get back to you with pricing information tailored to your needs.
+            </p>
+            <Contactform 
+              formId="pricing-inquiry"
+              subject="Pricing Inquiry"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </div>
 </Layout>
 
-<script>
-  const toggle = document.getElementById('pricing-toggle') as HTMLInputElement;
-  const priceElements = document.querySelectorAll('[data-price-monthly]');
+<style>
+  .gradient-mesh {
+    position: absolute;
+    inset: -20%;
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.1) 0%,
+      rgba(99, 102, 241, 0.15) 25%,
+      rgba(236, 72, 153, 0.1) 50%,
+      rgba(139, 92, 246, 0.15) 75%,
+      rgba(59, 130, 246, 0.1) 100%
+    );
+    opacity: 0.15;
+    pointer-events: none;
+    filter: blur(100px);
+    transform: translateZ(0);
+    mix-blend-mode: soft-light;
+  }
 
-  toggle?.addEventListener('change', () => {
-    priceElements.forEach(element => {
-      const monthly = element.getAttribute('data-price-monthly');
-      const annual = element.getAttribute('data-price-annual');
-      if (monthly && annual) {
-        element.textContent = toggle.checked ? annual : monthly;
-      }
-    });
-  });
-</script>
+  .glass-card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+</style> 

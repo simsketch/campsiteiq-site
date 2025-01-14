@@ -1,0 +1,126 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import PricingComponent from "@components/pricing.astro";
+import { Icon } from "astro-icon";
+
+// Add environment variable
+const PORTAL_URL = import.meta.env.PUBLIC_PORTAL_URL;
+
+const pricing = [
+  {
+    name: "Startup",
+    price: "Free Trial",
+    popular: false,
+    features: [
+      "Up to 1 property",
+      "99% Uptime SLA",
+      "Unlimited Pages",
+      "TouchGuides Subdomain",
+      "Basic Integrations",
+      "Community Support",
+    ],
+    button: {
+      text: "Get Started",
+      link: "/",
+    },
+  },
+  {
+    name: "Landlord (most popular)",
+    price: {
+      monthly: "$19",
+      annual: "$15",
+      discount: "20%",
+      original: "$25",
+    },
+    popular: true,
+    features: [
+      "Up to 2 properties",
+      "$5 each additional property",
+      "Unlimited Pages",
+      "TouchGuides Subdomain",
+      "Advanced Integrations",
+      "Priority Support",
+    ],
+    button: {
+      text: "Get Started",
+      link: `${PORTAL_URL}/sign-up`,
+    },
+  },
+  {
+    name: "Enterprise",
+    price: "Custom Pricing",
+    popular: false,
+    features: [
+      "Unlimited properties",
+      "99% Uptime SLA",
+      "Dedicated Account Manager",
+      "Custom Domain",
+      "Advanced Integrations",
+      "Priority Support",
+    ],
+    button: {
+      text: "Contact us",
+      link: "/contact",
+    },
+  },
+];
+---
+
+<Layout title="Pricing">
+  <div class="relative overflow-hidden">
+    <div class="gradient-mesh"></div>
+    <Container>
+      <Sectionhead>
+        <Fragment slot="title">Simple &amp; Predictable Pricing</Fragment>
+        <Fragment slot="desc">Start with our free tier and scale as you grow.</Fragment>
+      </Sectionhead>
+
+      <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg my-12">
+        {
+          pricing.map((item) => (
+            <div class="relative group">
+              <div class="gradient-hover"></div>
+              <div class="glass-card p-8 text-center">
+                <h3 class="text-2xl font-bold gradient-text mb-4 tracking-tight">{item.name}</h3>
+                <p class="text-3xl font-bold mb-6">
+                  {typeof item.price === "object" ? `${item.price.monthly}/mo` : item.price}
+                </p>
+                <ul class="space-y-4">
+                  {item.features.map((feature) => (
+                    <li class="flex items-center gap-2">
+                      <Icon class="w-5 h-5 text-blue-500" name="ph:check-circle-fill" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div class="mt-8">
+                  <a href={item.button.link} class={`button-gradient w-full text-center ${item.popular ? 'gradient-bg' : ''}`}>
+                    {item.button.text}
+                  </a>
+                </div>
+              </div>
+              <div class="gradient-glow"></div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </div>
+</Layout>
+
+<script>
+  const toggle = document.getElementById('pricing-toggle') as HTMLInputElement;
+  const priceElements = document.querySelectorAll('[data-price-monthly]');
+
+  toggle?.addEventListener('change', () => {
+    priceElements.forEach(element => {
+      const monthly = element.getAttribute('data-price-monthly');
+      const annual = element.getAttribute('data-price-annual');
+      if (monthly && annual) {
+        element.textContent = toggle.checked ? annual : monthly;
+      }
+    });
+  });
+</script>
