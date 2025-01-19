@@ -5,7 +5,7 @@ location: "Remote"
 type: "Full-time"
 published: 2024-03-20
 featured: true
-summary: "TouchGuides is looking for a Senior Business Development Representative to join our team. You will be responsible for identifying and qualifying new business opportunities, developing and nurturing relationships with potential clients, and driving revenue growth through strategic partnerships and business development initiatives. You will engage, connect and qualify inbound prospects as well as research, identify, connect and qualify outbound prospects."
+summary: "CampsiteIQ is looking for a Senior Business Development Representative to join our team. You will be responsible for identifying and qualifying new business opportunities, developing and nurturing relationships with potential clients, and driving revenue growth through strategic partnerships and business development initiatives. You will engage, connect and qualify inbound prospects as well as research, identify, connect and qualify outbound prospects."
 
 requirements:
   - "Must have a drive and desire to be in sales"

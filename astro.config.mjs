@@ -5,6 +5,6 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://touchguides.com",
+  site: "https://campsiteiq.com",
   integrations: [tailwind(), mdx(), sitemap()],
 });
